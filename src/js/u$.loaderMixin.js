@@ -9,9 +9,13 @@ u$.loaderMixin = {
   //  loaderHTML: '<div />'
   //},
   
-  showLoader: function() {
+  showLoader: function(beforeShow) {
     if (this.options.loaderClass) {
-      this.showOverlay();
+
+      if ($.isFunction(beforeShow)) {
+        beforeShow();
+      }
+
       this.$loader = $((this.options.loaderHTML || '<div />')).
           addClass(this.options.loaderClass);
     }

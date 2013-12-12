@@ -75,7 +75,7 @@ function slideUp($el, height, options) {
 }
 
 function slideDown($el, height, options) {
-  var props = !$el.get(0).clientHeight ? boxStyles : {},
+  var props = !$el.get(0).offsetHeight ? boxStyles : {},
     toHeight = height || u$.height($el),
     css = getOverflow($el),
     toAnimate = u$.mapStyles($el, props);

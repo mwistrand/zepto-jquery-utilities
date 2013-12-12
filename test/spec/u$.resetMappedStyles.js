@@ -28,11 +28,11 @@ describe('u$.resetMappedStyles', function() {
     var div = $div.get(0);
     
     expect(div.style['margin-top']).toEqual('20px');
-    expect(div.style['margin-right']).toEqual('auto');
+    expect(div.style['margin-right']).toEqual('0px');
   });
   
   it('resets the styles to what they were', function() {
-    expect(styles['marginTop']).toEqual('30px');
-    expect(styles['marginRight']).toEqual('10px');
+    expect(styles.marginTop).toEqual('30px');
+    expect(styles.marginRight).toEqual('10px');
   });
 });

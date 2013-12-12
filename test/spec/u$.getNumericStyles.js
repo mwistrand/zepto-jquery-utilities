@@ -19,6 +19,6 @@ describe('u$.getNumericStyles', function() {
     styles = u$.getNumericStyles($div, {}, 'margin');
     expect(styles['margin-top']).toBeDefined();
     expect(styles['margin-top']).toEqual('20px');
-    expect(styles['margin-left']).not.toBeDefined();
+    expect(styles['margin-left']).toEqual('0px');
   });
 });

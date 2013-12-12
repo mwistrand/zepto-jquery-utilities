@@ -48,15 +48,15 @@ u$.renderJSON = function($el, json, template) {
   }
 };
 
-u$.render = function(data, parent, prepend) {
-    var $elem = $.isArray(data) ? $.apply($, data) : $(data),
-      method = prepend ? 'prependTo' : 'appendTo';
+u$.render = function(parent, data, prepend) {
+  var $elem = $.isArray(data) ? $.apply($, data) : $(data),
+    method = prepend ? 'prependTo' : 'appendTo';
 
-    if (parent) {
-      $elem[method](parent);
-    }
-
-    return $elem;
+  if (parent) {
+    $elem[method](parent);
   }
+
+  return $elem;
+};
 
 })(window.Zepto || window.jQuery);

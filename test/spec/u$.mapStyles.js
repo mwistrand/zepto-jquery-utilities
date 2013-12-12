@@ -23,7 +23,7 @@ describe('u$.mapStyles', function() {
   });
   
   it('returns an object with old styles', function() {
-    expect(styles['marginTop']).toEqual('20px');
-    expect(styles['marginRight']).toEqual('auto');
+    expect(styles.marginTop).toEqual('20px');
+    expect(styles.marginRight).toEqual('0px');
   });
 });

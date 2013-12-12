@@ -8,7 +8,9 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-			
+			// html fixtures
+			{ pattern: "test/fixtures/*.html", watched: true, served: true, included: false },
+
 			// dependencies
 			"lib/jquery.min.js",
 

@@ -1,4 +1,11 @@
 module.exports = function(grunt) {
+	'use strict';
+
+	var nameBase = ('base,styles,slide,detach,render,cacheMixin,loaderMixin').split(','),
+		files = nameBase.map(function(name) {
+			return 'src/js/u$.' + name + '.js';
+		});
+
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
@@ -14,19 +21,31 @@ module.exports = function(grunt) {
 		uglify: {
 			build: {
 				files: {
-					'u$.js': ['src/js/*.js']
+					'u$.js': files
 				}
 			}
 		},
 
+		lint: {
+      files: ['gruntfile.js', 'src/js/*.js', 'test/spec/*.js']
+    },
+
+    jshint: {
+      options: {
+        expr: true
+      },
+
+      all: ['gruntfile.js', 'src/js/*.js', 'test/spec/*.js']
+    },
+
 		watch: {
 			js: {
-				files: ['src/js/*.js'],
-				tasks: ['uglify']
+				files: files,
+				tasks: ['jshint', 'uglify']
 			},
 
 			karma: {
-				files: ['src/*.js', 'test/**/*.js'],
+				files: ['src/js/*.js', 'test/**/*.js'],
 				tasks: ['karma:unit:run']
 			}
 		}

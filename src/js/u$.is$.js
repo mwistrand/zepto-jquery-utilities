@@ -3,7 +3,7 @@
 
 window.u$ || (window.u$ = {});
 
-u$.instanceOf$ = function(obj) {
+u$.is$ = function(obj) {
   return (window.Zepto) ? $.zepto.isZ(obj) : (obj instanceof $);
 };
 

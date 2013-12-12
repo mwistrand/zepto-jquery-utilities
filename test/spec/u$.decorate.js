@@ -1,6 +1,6 @@
 describe('u$ Decorator Mixin', function() {
   'use strict';
-var testI = 0;
+
   var instance,
     proto = u$.decorate({
       getPrice: function() {
@@ -30,15 +30,14 @@ var testI = 0;
 
   beforeEach(function() {
     instance = Object.create(proto);
-    instance._i = ++testI;
   });
   afterEach(function() {
     instance = null;
   });
 
   it('adds decorator methods to an object', function() {
-    expect($.isFunction(instance.decorate)).toBe(true);
-    expect($.isFunction(instance.undecorate)).toBe(true);
+    expect(instance.decorate).toEqual(jasmine.any(Function));
+    expect(instance.undecorate).toEqual(jasmine.any(Function));
   });
 
   it('accepts decorators that are methods of the passed-in object', function() {

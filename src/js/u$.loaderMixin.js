@@ -5,10 +5,15 @@ window.u$ || (window.u$ = {});
 
 u$.loaderMixin = {
   //options: {
-  //  loaderClass: 'loader--modal',
+  //  loaderClass: 'loader',
   //  loaderHTML: '<div />'
   //},
   
+  /**
+   * @param beforeShow A callback to execute before the loader is shown.
+   *        This is useful for adding other elements such as a darkened
+   *        overlay.
+   */
   showLoader: function(beforeShow) {
     if (this.options.loaderClass) {
 
@@ -17,7 +22,7 @@ u$.loaderMixin = {
       }
 
       this.$loader = $((this.options.loaderHTML || '<div />')).
-          addClass(this.options.loaderClass);
+          .addClass('loader').addClass(this.options.loaderClass);
     }
   },
 

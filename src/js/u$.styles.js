@@ -9,13 +9,24 @@ var unhideProps = {
   visibility: 'hidden'
 };
 
+/**
+ * Takes an object of styles and returns an object containing
+ * an element's current styles.
+ *
+ * @param $el The Zepto/jQuery element
+ * @param props An object of styles
+ * @param callback An optional function that will be executed for each
+ *                 style in the `props` object.
+ *
+ * @returns An object containing the element's styles.
+ */
 u$.getStyles = function($el, props, callback) {
   var old = {};
   
   $.each(props, function(name, value) {
     old[name] = $el.css(name);
     
-    if (callback) {
+    if ($.isFunction(callback)) {
       callback($el, name, value);
     }
   });

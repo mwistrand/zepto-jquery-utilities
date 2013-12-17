@@ -1,13 +1,16 @@
+/**
+ * A mixin to set up cache management. Provides two methods:
+ * `setCache` and `getCache`. Note that the parent should have
+ * an `options` object with a boolean `cache` value.
+ *
+ * Caching can be turned on/off via the parent object's `options.cache`
+ * property.
+ */
 (function($) {
 'use strict';
 
 window.u$ || (window.u$ = {});
 
-/**
- * A mixin to set up cache management. Provides two methods:
- * `setCache` and `getCache`. Note that the parent should have
- * an `options` object with a boolean `cache` value.
- */
 u$.cacheMixin = {
   /* options: {
     cache: true

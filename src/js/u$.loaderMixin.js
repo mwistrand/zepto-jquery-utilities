@@ -22,7 +22,7 @@ u$.loaderMixin = {
       }
 
       this.$loader = $((this.options.loaderHTML || '<div />')).
-          .addClass('loader').addClass(this.options.loaderClass);
+          addClass('loader').addClass(this.options.loaderClass);
     }
   },
 

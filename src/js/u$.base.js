@@ -28,18 +28,4 @@ u$.is$ = function(obj) {
   return (window.Zepto) ? $.zepto.isZ(obj) : (obj instanceof $);
 };
 
-u$.decorateComplete = function($el, options, fn) {
-  var complete = options && options.complete;
-
-  return $.extend((options || {}), {
-    complete: function() {
-      fn.call($el);
-
-      if ($.isFunction(complete)) {
-        complete.call($el);
-      }
-    }
-  });
-};
-
 })(window.Zepto || window.jQuery);

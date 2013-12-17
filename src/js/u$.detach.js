@@ -4,7 +4,7 @@
 window.u$ || (window.u$ = {});
 
 /**
- * Helper method for detaching namespace events and cleaning
+ * Helper method for detaching namespaced events and cleaning
  * references to object properties.
  *
  * @param obj The object to clean

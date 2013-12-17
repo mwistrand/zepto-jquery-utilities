@@ -22,10 +22,10 @@ module.exports = function(config) {
 			"test/helpers/fixtures.js",
 
 			// code you want to test
-			"src/js/*.js",
+			"src/js/**/*.js",
 
 			// test code
-			"test/spec/*.js"
+			"test/spec/**/*.js"
 		],
 
 		// list of files to exclude

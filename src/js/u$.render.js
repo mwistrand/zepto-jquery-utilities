@@ -38,6 +38,15 @@ var render = (function() {
   };
 })();
 
+/**
+ * Converts JSON to HTML based on the provided template, and replaces
+ * the provided element's HTML with the result.
+ *
+ * @param $el The `$` element where the generated HTML will be inserted.
+ * @param json The JSON string.
+ * @param template Either a string (see private `render` function above)
+ *                 or a function that is passed the element and object.
+ */
 u$.renderJSON = function($el, json, template) {
   var obj = $.parseJSON(json);
 
@@ -48,6 +57,14 @@ u$.renderJSON = function($el, json, template) {
   }
 };
 
+/**
+ * Creates a new element from provided data and injects it into a parent.
+ *
+ * @param parent The parent element to which the new element will be added.
+ * @param data Either an HTML string or an array of data to pass to `$`.
+ * @param prepend If true, the new element will be added as the first
+ *                child of the parent. Otherwise, it will added as the last.
+ */
 u$.render = function(parent, data, prepend) {
   var $elem = $.isArray(data) ? $.apply($, data) : $(data),
     method = prepend ? 'prependTo' : 'appendTo';

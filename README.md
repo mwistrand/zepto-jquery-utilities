@@ -24,14 +24,16 @@ The ECMAScript 5 `Object.create` and `Array.prototype` methods. A lightweight fa
 
 - `getStyles($element, styles, callback)` => object
   Returns an object containing an element styles. If an optional callback is provided, that callback will be passed the element, style name, and style value for each style in the `styles` object. E.g.,
-```
+
+```javascript
 $el.css({opacity: 1, height: '100px'});
 u$.getStyles($el, {opacity: 0, height: 0}); // {opacity: 1, height: '100px'}
 ```
 
 - `mapStyles($element, styles)` => object
   Nearly identical to `u$.getStyles`, but does not take a callback, and the styles in the passed-in object are applied to the element. E.g,
-```
+
+```javascript
 $el.css({opacity: 1, height: '100px'});
 u$.getStyles($el, {opacity: 0, height: 0}); // {opacity: 1, height: '100px'}
 $el.css('opacity'); // 0
@@ -40,7 +42,8 @@ $el.css('height'); // 0
 
 - `resetMappedStyles($element, styles, callback)` => variable
   Maps styles to an element, executes a callback (which is passed the element), and then resets the old styles. Returns the result of executing the callback. E.g.,
-```
+
+```javascript
 // returns the actual height of an element, without the padding or border
 u$.resetMappedStyles($el, {
   paddingTop: 0,
@@ -63,7 +66,8 @@ u$.resetMappedStyles($el, {
 
 - `detach(object, namespace, properties)` => array
   Helper method for detaching namespaced events and cleaning references to object properties. The properties can either be passed as an array or as part of the arguments list. Returns an array of old properties. E.g.,
-```
+
+```javascript
 var obj = {$el: $(document.body), count: 3},
   old = u$.detach(obj, 'myNamespace', '$el', 'count'); // [$(document.body), 3]
   // $(document.body)  no longer has 'myNamespace' events attached.
@@ -74,7 +78,8 @@ var obj = {$el: $(document.body), count: 3},
 
 - `renderJSON($element, jsonString, template)`
   Passes a JSON string to a tempting engine that will generate the HTML to be inserting into an element (via `innerHTML`). The third argument is the template that will be used to generate the HTML from the JSON data. If the JSON is very simple and only one level deep (for example, `[{"id": 1, title: "Article 1"}, {"id": 2, "Article 2"}]` or `{"id": 1, title: "Article 1"}`, then the built-in template parser will suffice. Otherwise, you can specify a function that takes the element and JSON object (not string) and use a more powerful templating engine like Handlebars:
-```
+
+```javascript
 function($container, data) {
   var source = $('#handlebars-template').html(),
     template = Handlebars.compile(source);
@@ -90,7 +95,8 @@ function($container, data) {
   Caching can be turned on/off via the parent object's `options.cache` property.
 
   Example:
-```
+
+```javascript
 var proto = $.extend({
   options: {
     cache: true
@@ -116,7 +122,8 @@ var proto = $.extend({
   The HTML for the loader element can be specified via a `loaderHTML` string option on the parent object's `options` object.
 
   Example:
-```
+
+```javascript
 var proto = $.extend({
   options: {
     loaderClass: 'loader--search',
@@ -142,7 +149,8 @@ var proto = $.extend({
 2. An object of method names containing the details of which methods can be used to decorate them. The key must be the name of a method on `proto`, and the value must be an array of methods. These methods can either be a string representing the name of a method on `proto`, or an object with a "name" (string) and "fn" (function) values.
 
   Example:
-```
+
+```javascript
 var proto = u$.decorate({
   getPrice: function() {
     this.price || (this.price = 10);

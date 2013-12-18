@@ -11,10 +11,10 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
-				background: true
+		jshint: {
+			src: ['gruntfile.js', 'src/js/**/*.js', 'test/spec/**/*.js'],
+			options: {
+				expr: true
 			}
 		},
 
@@ -26,17 +26,12 @@ module.exports = function(grunt) {
 			}
 		},
 
-		lint: {
-      files: ['gruntfile.js', 'src/js/*.js', 'test/spec/*.js']
-    },
-
-    jshint: {
-      options: {
-        expr: true
-      },
-
-      all: ['gruntfile.js', 'src/js/*.js', 'test/spec/*.js']
-    },
+		karma: {
+			unit: {
+				configFile: 'karma.conf.js',
+				background: true
+			}
+		},
 
 		watch: {
 			js: {
@@ -51,5 +46,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', []);
+	grunt.registerTask('default', ['jshint', 'karma', 'uglify']);
 };

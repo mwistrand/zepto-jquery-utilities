@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Accordion Demo</title>
+	<style>
+		a { display: block; }
+		.container {
+			margin: 10px;
+			padding: 20px;
+			width: 300px;
+			
+			border: 10px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<a class="js-open">Expand the full container:</a>
+	<div style="display: none; width: 300px; padding: 20px 10px; border: 10px solid #000; margin: 10px;">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim turpis vel feugiat consectetur. Mauris non arcu nulla. Suspendisse venenatis, arcu eget porta ornare, dolor metus porta mauris, et blandit sem felis sit amet dolor. Duis ac odio a dui aliquet condimentum quis eu nulla. Nam vel tempus risus, non fermentum orci. Vivamus tempor, est eu dictum dictum, mi tortor dignissim odio, non condimentum urna dui a purus. Curabitur nec varius justo, id commodo est. Curabitur varius est et mi adipiscing, faucibus gravida ipsum laoreet. Donec non dictum lorem, vitae tempor lectus. Phasellus nisi augue, facilisis adipiscing volutpat vel, condimentum in dolor. Nulla facilisi. Vivamus accumsan varius blandit. Morbi tincidunt ipsum sem, eu tempor mauris laoreet ut. Nulla facilisi.
+	</div>
+	
+	<a class="js-open">Expand the height to 100px:</a>
+	<div data-maxheight="100" style="display: none; width: 300px; padding: 20px; border: 10px solid #000; margin: 10px;">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim turpis vel feugiat consectetur. Mauris non arcu nulla. Suspendisse venenatis, arcu eget porta ornare, dolor metus porta mauris, et blandit sem felis sit amet dolor. Duis ac odio a dui aliquet condimentum quis eu nulla. Nam vel tempus risus, non fermentum orci. Vivamus tempor, est eu dictum dictum, mi tortor dignissim odio, non condimentum urna dui a purus. Curabitur nec varius justo, id commodo est. Curabitur varius est et mi adipiscing, faucibus gravida ipsum laoreet. Donec non dictum lorem, vitae tempor lectus. Phasellus nisi augue, facilisis adipiscing volutpat vel, condimentum in dolor. Nulla facilisi. Vivamus accumsan varius blandit. Morbi tincidunt ipsum sem, eu tempor mauris laoreet ut. Nulla facilisi.
+	</div>
+	
+	<script src="../lib/zepto.js"></script>
+	<script src="../src/js/u$.getStyles.js"></script>
+	<script src="../src/js/u$.mapStyles.js"></script>
+	<script src="../src/js/u$.resetMappedStyles.js"></script>
+	<script src="../src/js/u$.height.js"></script>
+	<script src="../../slideup-slidedown/src/js/zepto.slideDown.js"></script>
+	<script src="../src/js/u$.slideDown.js"></script>
+	<script>
+		(function($) {
+			$(function() {
+				$('.js-open').on('click', function() {
+					var $el = $(this),
+						$fold = $el.next();
+					u$.slideDown($fold, $fold.data('maxheight'));
+				});
+			});
+		})(window.Zepto || window.jQuery);
+	</script>
+</body>
+</html>

@@ -144,8 +144,8 @@ var proto = $.extend({
 ## Extras (not included in the build)
 - `decorate(proto, decorators)` => object
   * Decorator pattern implementation. Takes two objects:
-  1. A prototype object; adds to it `decorate(methodToDecorate, decoratorName)` and `undecorate(methodToUndecorate, decoratorName)` methods.
-  2. An object of method names containing the details of which methods can be used to decorate them. The key must be the name of a method on `proto`, and the value must be an array of methods. These methods can either be a string representing the name of a method on `proto`, or an object with a "name" (string) and "fn" (function) values.
+    1. A prototype object; adds to it `decorate(methodToDecorate, decoratorName)` and `undecorate(methodToUndecorate, decoratorName)` methods.
+    2. An object of method names containing the details of which methods can be used to decorate them. The key must be the name of a method on `proto`, and the value must be an array of methods. These methods can either be a string representing the name of a method on `proto`, or an object with a "name" (string) and "fn" (function) values.
 
 Example:
 

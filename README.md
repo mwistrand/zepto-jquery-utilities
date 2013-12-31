@@ -10,6 +10,19 @@ The ECMAScript 5 `Object.create` and `Array.prototype` methods. A lightweight fa
 - `is$(object)`=> boolean
   * Determines whether the passed-in object is an instance of Zepto or jQuery (`$`).
 
+- `create(proto, beforeFn[, arg1[, arg2[, argN…]]])` => instance object
+  * Creates a new object from a prototype, passes the instance object to an optional callback, calls an optional `initialize` method, passing to it the remaining arguments. E.g.,
+
+```javascript
+u$.create({
+  initialize: function(author) {
+    this.author = author;
+  }
+}, function(instance) {
+  instance.UID = new Date().getTime();
+}, 'J.R.R. Tolkien');
+```
+
 - `stripHash(string)`=> string
   * Removes the hash from the end of a URL. Throws `TypeError` if a string is not provided. E.g.,
 `u$.stripHash('http://example.com#hash') // 'http://example.com'`

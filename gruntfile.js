@@ -26,25 +26,13 @@ module.exports = function(grunt) {
 			}
 		},
 
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
-				background: true
-			}
-		},
-
 		watch: {
 			js: {
 				files: files,
 				tasks: ['jshint', 'uglify']
-			},
-
-			karma: {
-				files: ['src/js/*.js', 'test/**/*.js'],
-				tasks: ['karma:unit:run']
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'karma', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'uglify']);
 };

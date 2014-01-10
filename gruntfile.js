@@ -18,10 +18,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+			js: {
+				src: files,
+				dest: 'u$.uncompressed.js'
+			}
+		},
+
 		uglify: {
 			build: {
 				files: {
-					'u$.js': files
+					'u$.js': 'u$.uncompressed.js'
 				}
 			}
 		},
@@ -29,10 +36,10 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: files,
-				tasks: ['jshint', 'uglify']
+				tasks: ['jshint', 'concat', 'uglify']
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };

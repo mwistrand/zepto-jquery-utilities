@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "grunt": "~0.4.2",
+    "grunt-contrib-concat": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-jasmine": "*",

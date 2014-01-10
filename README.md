@@ -132,6 +132,9 @@ var proto = $.extend({
 - `loaderMixin`
   * Mixin for displaying an AJAX loader/spinner. Objects implement this will be decorated with `showLoader` and `hideLoader` methods. A CSS class can be added to the loader element by specifying a `loaderClass` option on the parent object's `options` object.
   * The HTML for the loader element can be specified via a `loaderHTML` string option on the parent object's `options` object.
+  * `showLoader` accepts two optional arguments:
+    1. An optional element into which to inject the loader element. By default, the loader will be injected into the `<body>` element.
+    2. An optional callback to execute before the loader is displayed (bound to `this`).
 
 Example:
 
@@ -143,7 +146,7 @@ var proto = $.extend({
   },
 
   show: function() {
-    this.showLoader(function() {
+    this.showLoader($someElement, function() {
       console.log('loader displayed');
     });
   },

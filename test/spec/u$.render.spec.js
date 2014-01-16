@@ -15,14 +15,27 @@ describe('Template Rendering Functions', function() {
     $div = null;
   });
 
-  it('renders a JSON array as HTML', function() {
+  it('renders a JSON array (string) as HTML', function() {
     u$.renderJSON($div, jsonArr, template);
     expect($div.html()).toEqual(html);
   });
 
-  it('renders a JSON object as HTML', function() {
+  it('renders a JSON object (string) as HTML', function() {
     u$.renderJSON($div, jsonObj, template);
     expect($div.html()).toEqual(html);
+  });
+
+  it('renders a plain object of data as HTML', function() {
+    var obj = $.parseJSON(jsonObj);
+
+    u$.renderJSON($div, jsonObj, template);
+    expect($div.html()).toEqual(html);
+  });
+
+  it('returns the updated `$` element', function() {
+    var $el = u$.renderJSON($div, jsonObj, template);
+
+    expect($el).toBe($div);
   });
 
   it('adds a new element to a parent from an array of data', function() {

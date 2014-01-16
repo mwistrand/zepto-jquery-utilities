@@ -219,10 +219,10 @@ u$.resetMappedStyles = function($el, props, fn) {
  */
 u$.height = (function() {
   var props = $.extend(Object.create(unhideProps), {
-    paddingTop: 0,
-    paddingBottom: 0,
     borderTop: 0,
-    borderBottom: 0
+    borderBottom: 0,
+    paddingTop: 0,
+    paddingBottom: 0
   });
   
   return function($el) {
@@ -488,15 +488,19 @@ var render = (function() {
  * @param json The JSON string.
  * @param template Either a string (see private `render` function above)
  *                 or a function that is passed the element and object.
+ *
+ * @returns $el
  */
 u$.renderJSON = function($el, json, template) {
-  var obj = $.parseJSON(json);
+  var obj = $.isPlainObject(json) ? json : $.parseJSON(json);
 
   if ($.isFunction(template)) {
     template($el, obj);
   } else {
     render($el, obj, template);
   }
+
+  return $el;
 };
 
 /**

@@ -83,10 +83,10 @@ u$.resetMappedStyles = function($el, props, fn) {
  */
 u$.height = (function() {
   var props = $.extend(Object.create(unhideProps), {
-    paddingTop: 0,
-    paddingBottom: 0,
     borderTop: 0,
-    borderBottom: 0
+    borderBottom: 0,
+    paddingTop: 0,
+    paddingBottom: 0
   });
   
   return function($el) {

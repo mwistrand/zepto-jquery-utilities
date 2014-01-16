@@ -89,8 +89,8 @@ var obj = {$el: $(document.body), count: 3},
 - `render(parent, data, prepend?)` => `$` element
   * Creates a new element from either a string or an array of data that can be passed to `$`, and adds it to a parent element. If the third argument is `true`, the new element will be added as the first child of the parent. Otherwise, it will be added as the last child of the parent.
 
-- `renderJSON($element, jsonString, template)`
-  * Passes a JSON string to a tempting engine that will generate the HTML to be inserting into an element (via `innerHTML`). The third argument is the template that will be used to generate the HTML from the JSON data. If the JSON is very simple and only one level deep (for example, `[{"id": 1, title: "Article 1"}, {"id": 2, "Article 2"}]` or `{"id": 1, title: "Article 1"}`, then the built-in template parser will suffice. Otherwise, you can specify a function that takes the element and JSON object (not string) and use a more powerful templating engine like Handlebars:
+- `renderJSON($element, jsonString, template)` => `$element`
+  * Passes a JSON string or JSON object to a tempting engine that will generate the HTML to be inserting into an element (via `innerHTML`). The third argument is the template that will be used to generate the HTML from the JSON data. If the JSON is very simple and only one level deep (for example, `[{"id": 1, title: "Article 1"}, {"id": 2, "Article 2"}]` or `{"id": 1, title: "Article 1"}`, then the built-in template parser will suffice. Otherwise, you can specify a function that takes the element and JSON object (not string) and use a more powerful templating engine like Handlebars:
 
 ```javascript
 function($container, data) {

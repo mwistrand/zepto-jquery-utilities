@@ -11,6 +11,10 @@ var defaults = {
     
     hideDelay: 100,
     hideFromScreenReaders: true,
+    offset: {
+      left: 15,
+      top: 10
+    },
     tipElement: '<div />',
     tipClass: 'tooltip',
     useMousePosition: true
@@ -84,8 +88,14 @@ var defaults = {
 
     show: function($to, mousePos) {
       clearTimeout(this.timer);
-      this.render($to);
-      this.mover.show(this.$tip, $to, mousePos);
+      
+      if (!this.$current) {
+        this.$current = $to;
+
+        this.render($to);
+      }
+
+      this.mover.show(this.$tip, mousePos || $to);
     },
 
     render: function($to) {
@@ -106,6 +116,10 @@ var defaults = {
     hide: function() {
       this.timer = setTimeout(function() {
         this.mover.hide(this.$tip);
+        this.$current.attr('title', this.$current.data('tiptitle')).
+            removeData('tiptitle');
+
+        this.$current = null;
       }.bind(this), this.options.hideDelay);
     }
   };

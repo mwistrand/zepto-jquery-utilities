@@ -1,4 +1,4 @@
-xdescribe('u$ Tooltip', function() {
+describe('u$ Tooltip', function() {
   'use strict';
 
   var instance,
@@ -16,11 +16,7 @@ xdescribe('u$ Tooltip', function() {
   function loadElements() {
     $body = $(document.body);
     $tip = $('<div />').appendTo($body);
-    $a = $('<a class="js-showTip" />').css({
-      display: 'block',
-      height: '10px',
-      width: '10px'
-    }).appendTo($body);
+    $a = $('<a class="js-showTip" />').appendTo($body);
   }
 
   function resetAndTrigger(options) {
@@ -109,7 +105,7 @@ xdescribe('u$ Tooltip', function() {
     $a.trigger('mouseenter');
     expect(instance.$tip.css('position')).toEqual('absolute');
     expect(instance.$tip.css('top')).toEqual(pos.top + 10 + 'px');
-    expect(instance.$tip.css('left')).toEqual(pos.left + 'px');
+    expect(instance.$tip.css('left')).toEqual(pos.left + 15 + 'px');
   });
 
   it('uses the mouse position to determine the tooltip position', function() {
@@ -118,7 +114,7 @@ xdescribe('u$ Tooltip', function() {
       hideDelay: 0
     });
     expect(instance.$tip.css('top')).toEqual('110px');
-    expect(instance.$tip.css('left')).toEqual('100px');
+    expect(instance.$tip.css('left')).toEqual('115px');
   });
 
   it('offsets the tip from the generated position', function() {
@@ -126,12 +122,12 @@ xdescribe('u$ Tooltip', function() {
       delegate: '.js-showTip',
       hideDelay: 0,
       offset: {
-        left: 10,
-        top: 10
+        left: 0,
+        top: 0
       }
     });
-    expect(instance.$tip.css('top')).toEqual('120px');
-    expect(instance.$tip.css('left')).toEqual('110px');
+    expect(instance.$tip.css('top')).toEqual('100px');
+    expect(instance.$tip.css('left')).toEqual('100px');
   });
 
   it('generates the tip body from a `title` attribute', function() {
@@ -144,17 +140,18 @@ xdescribe('u$ Tooltip', function() {
   it('removes the `title` text before the tip is displayed', function() {
     var text = 'Lorem ipsum dolor sit amet';
 
-    $a.attr('title', text).trigger('mouseenter');
+    $a.attr('title', text).trigger('mouseenter').trigger('mouseleave');
     expect($a.data('tiptitle')).toEqual(text);
-    expect($a.data('title')).toEqual('');
+    expect($a.attr('title')).toEqual('');
   });
 
   it('restores the `title` text after the tip is hidden', function() {
     var text = 'Lorem ipsum dolor sit amet';
 
     $a.attr('title', text).trigger('mouseenter').trigger('mouseleave');
+    jasmine.Clock.tick(100);
     expect($a.data('tiptitle')).not.toBeDefined();
-    expect($a.data('title')).toEqual(text);
+    expect($a.attr('title')).toEqual(text);
   });
 
   it('generates a tip from a template', function() {

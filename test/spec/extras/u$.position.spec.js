@@ -33,16 +33,16 @@ describe('u$ Tooltip', function() {
   it('moves an element to the position of another element', function() {
     instance.move($moveable, $a);
     expect($moveable.css('position')).toEqual('absolute');
-    expect($moveable.css('top')).toEqual('110px');
+    expect($moveable.css('top')).toEqual('100px');
     expect($moveable.css('left')).toEqual('100px');
   });
 
   it('moves an element to the specified object of coordinates', function() {
-    instance.move($moveable, $a, {
+    instance.move($moveable, {
       top: 100,
       left: 100
     });
-    expect($moveable.css('top')).toEqual('110px');
+    expect($moveable.css('top')).toEqual('100px');
     expect($moveable.css('left')).toEqual('100px');
   });
 
@@ -56,7 +56,7 @@ describe('u$ Tooltip', function() {
 
     instance.move($moveable, $a);
     expect($moveable.css('position')).toEqual('absolute');
-    expect($moveable.css('top')).toEqual('120px');
+    expect($moveable.css('top')).toEqual('110px');
     expect($moveable.css('left')).toEqual('110px');
   });
 

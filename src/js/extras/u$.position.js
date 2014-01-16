@@ -18,14 +18,14 @@ u$.position = {
     return this.options;
   },
 
-  move: function($el, $to, coords) {
-    var position = coords || $to.position(),
+  move: function($el, $to) {
+    var position = $.isPlainObject($to) ? $to : $to.position(),
       opts = this.options || this.setOptions(),
       offset = opts.offset;
 
     $el.css({
       position: 'absolute',
-      top: position.top + $to.height() + offset.top,
+      top: position.top + offset.top,
       left: position.left + offset.left
     });
 

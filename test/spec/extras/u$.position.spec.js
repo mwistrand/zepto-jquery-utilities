@@ -1,4 +1,4 @@
-describe('u$ Tooltip', function() {
+describe('u$.position', function() {
   'use strict';
 
   var instance,
@@ -8,13 +8,14 @@ describe('u$ Tooltip', function() {
   beforeEach(function() {
     jasmine.Clock.useMock();
 
-    instance = Object.create(u$.position);
-
-    $moveable = $('<div />').appendTo(document.body);
+    // set the width on both elements to 1px so that the width of the browser
+    // running in the background doesn't throw off the tests.
+    $moveable = $('<div />').css('width', '1px').appendTo(document.body);
+    instance = u$.position($moveable);
     $a = $('<a />').css({
       display: 'block',
-      height: '10px',
-      width: '10px'
+      height: '1px',
+      width: '1px'
     }).appendTo(document.body);
 
     spyOn($a, 'position').andCallFake(function() {
@@ -30,18 +31,18 @@ describe('u$ Tooltip', function() {
     $moveable.remove();
   });
 
-  it('moves an element to the position of another element', function() {
-    instance.move($moveable, $a);
-    expect($moveable.css('position')).toEqual('absolute');
+  it('moves an element to the specified object of coordinates', function() {
+    instance.move({
+      top: 100,
+      left: 100
+    });
     expect($moveable.css('top')).toEqual('100px');
     expect($moveable.css('left')).toEqual('100px');
   });
 
-  it('moves an element to the specified object of coordinates', function() {
-    instance.move($moveable, {
-      top: 100,
-      left: 100
-    });
+  it('moves an element to the position of another element', function() {
+    instance.move($a);
+    expect($moveable.css('position')).toEqual('absolute');
     expect($moveable.css('top')).toEqual('100px');
     expect($moveable.css('left')).toEqual('100px');
   });
@@ -54,21 +55,9 @@ describe('u$ Tooltip', function() {
       }
     };
 
-    instance.move($moveable, $a);
+    instance.move($a);
     expect($moveable.css('position')).toEqual('absolute');
     expect($moveable.css('top')).toEqual('110px');
     expect($moveable.css('left')).toEqual('110px');
-  });
-
-  it('moves and displays an element', function() {
-    spyOn(instance, 'move');
-    instance.show($moveable, $a);
-    expect(instance.move).toHaveBeenCalled();
-    expect($moveable).toHaveClass('is-visible');
-  });
-
-  it('hides an element', function() {
-    instance.show($moveable, $a).hide($moveable);
-    expect($moveable).not.toHaveClass('is-visible');
   });
 });

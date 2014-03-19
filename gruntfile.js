@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	var nameBase = ('base,query,styles,slide,detach,render,cacheMixin,loaderMixin').split(','),
+	var nameBase = ('base,createFactory,query,styles,slide,detach,render,cacheMixin,loaderMixin').split(','),
 		files = nameBase.map(function(name) {
 			return 'src/js/u$.' + name + '.js';
 		});

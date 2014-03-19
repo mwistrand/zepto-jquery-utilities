@@ -28,34 +28,6 @@ u$.is$ = function(obj) {
   return (window.Zepto) ? $.zepto.isZ(obj) : (obj instanceof $);
 };
 
-/**
- * Creates a new object from a prototype, passes the instance object
- * to an optional callback, calls an `initialize` method, passing to it
- * the remaining arguments.
- *
- * @param proto The object to pass to `Object.create`.
- * @param beforeFn An optional callback function that will be passed
- *                 the newly-created instance object.
- * @param *arguments* Additional arguments will be passed to the instance
- *                    object's `initialize` function, if it exists.
- *
- * @returns The instance object.
- */
-u$.create = function(proto, beforeFn) {
-  var instance = Object.create(proto),
-    args = [].slice.call(arguments, 2);
-
-  if ($.isFunction(beforeFn)) {
-    beforeFn(instance);
-  }
-
-  if ($.isFunction(instance.initialize)) {
-    instance.initialize.apply(instance, args);
-  }
-
-  return instance;
-};
-
 })(window.Zepto || window.jQuery);
 (function($) {
 'use strict';

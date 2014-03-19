@@ -10,17 +10,30 @@ The ECMAScript 5 `Object.create` and `Array.prototype` methods. A lightweight fa
 - `is$(object)`=> boolean
   * Determines whether the passed-in object is an instance of Zepto or jQuery (`$`).
 
-- `create(proto, beforeFn[, arg1[, arg2[, argN…]]])` => instance object
-  * Creates a new object from a prototype, passes the instance object to an optional callback, calls an optional `initialize` method, passing to it the remaining arguments. E.g.,
+- `createFactory(proto, beforeFn)` => function
+  * Returns a factory function that:
+    1. Creates a new instance object from a prototype.
+    2. Calls an optional function bound to `this` before it…
+    3. Calls an options `initialize` method.
 
 ```javascript
-u$.create({
-  initialize: function(author) {
-    this.author = author;
+var protoObject = {
+  initialize: function($el) {
+    this.$el = $el;
   }
-}, function(instance) {
-  instance.UID = new Date().getTime();
-}, 'J.R.R. Tolkien');
+};
+
+// `protoObject` can also be a function that returns an object
+// to be used as the prototype.
+var count = 0,
+  factory = u$.createFactory(protoObject, function() {
+    this.count = count;
+    count += 1;
+  });
+
+// …
+var instance = factory($('.js-someSelectory'));
+console.log(instance.count); // 0
 ```
 
 - `stripHash(string)`=> string

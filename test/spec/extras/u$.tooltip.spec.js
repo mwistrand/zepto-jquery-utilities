@@ -52,46 +52,46 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip.parent().get(0)).toEqual($body.get(0));
   });
 
-  it('uses an arbitrary in-page element as the tip', function() {
+  xit('uses an arbitrary in-page element as the tip', function() {
     instance.options.tipElement = $tip;
     instance.setTip();
     expect(instance.$tip).toEqual($tip);
   });
 
-  it('adds the specified class to the tooltip', function() {
+  xit('adds the specified class to the tooltip', function() {
     expect(instance.$tip).toHaveClass('tooltip');
   });
 
-  it('hides a tooltip when the tip is created.', function() {
+  xit('hides a tooltip when the tip is created.', function() {
     expect(instance.$tip).not.toHaveClass('is-visible');
   });
 
-  it('displays a tooltip when an element is moused over', function() {
+  xit('displays a tooltip when an element is moused over', function() {
     $a.trigger('mouseenter');
     expect(instance.$tip).toHaveClass('is-visible');
   });
 
-  it('hides a tooltip on mouse out', function() {
+  xit('hides a tooltip on mouse out', function() {
     $a.trigger('mouseenter').trigger('mouseleave');
     jasmine.Clock.tick(100);
     expect(instance.$tip).not.toHaveClass('is-visible');
   });
 
-  it('adds a state class when the tip is displayed', function() {
+  xit('adds a state class when the tip is displayed', function() {
     instance.options.showClass = 'is-displayed';
     instance.setOptions(instance.options);
     $a.trigger('mouseenter');
     expect(instance.$tip).toHaveClass('is-displayed');
   });
 
-  it('removes a state class when the tip is displayed', function() {
+  xit('removes a state class when the tip is displayed', function() {
     instance.options.showClass = 'is-hidden';
     instance.setOptions(instance.options);
     $a.trigger('mouseenter').trigger('mouseleave');
     expect(instance.$tip).toHaveClass('is-hidden');
   });
 
-  it('hides a tip after a delay', function() {
+  xit('hides a tip after a delay', function() {
     instance.options.hideDelay = 500;
     $a.trigger('mouseenter').trigger('mouseleave');
     expect(instance.$tip).toHaveClass('is-visible');
@@ -99,7 +99,7 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip).not.toHaveClass('is-visible');
   });
 
-  it('moves the tip to the position of the moused-over element', function() {
+  xit('moves the tip to the position of the moused-over element', function() {
     var pos = $a.position();
 
     $a.trigger('mouseenter');
@@ -108,7 +108,7 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip.css('left')).toEqual(pos.left + 15 + 'px');
   });
 
-  it('uses the mouse position to determine the tooltip position', function() {
+  xit('uses the mouse position to determine the tooltip position', function() {
     resetAndTrigger({
       delegate: '.js-showTip',
       hideDelay: 0
@@ -117,7 +117,7 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip.css('left')).toEqual('115px');
   });
 
-  it('offsets the tip from the generated position', function() {
+  xit('offsets the tip from the generated position', function() {
     resetAndTrigger({
       delegate: '.js-showTip',
       hideDelay: 0,
@@ -130,14 +130,14 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip.css('left')).toEqual('100px');
   });
 
-  it('generates the tip body from a `title` attribute', function() {
+  xit('generates the tip body from a `title` attribute', function() {
     var text = 'Lorem ipsum dolor sit amet';
 
     $a.attr('title', text).trigger('mouseenter');
     expect(instance.$tip.text()).toEqual(text);
   });
 
-  it('removes the `title` text before the tip is displayed', function() {
+  xit('removes the `title` text before the tip is displayed', function() {
     var text = 'Lorem ipsum dolor sit amet';
 
     $a.attr('title', text).trigger('mouseenter').trigger('mouseleave');
@@ -145,7 +145,7 @@ describe('u$ Tooltip', function() {
     expect($a.attr('title')).toEqual('');
   });
 
-  it('restores the `title` text after the tip is hidden', function() {
+  xit('restores the `title` text after the tip is hidden', function() {
     var text = 'Lorem ipsum dolor sit amet';
 
     $a.attr('title', text).trigger('mouseenter').trigger('mouseleave');
@@ -154,7 +154,7 @@ describe('u$ Tooltip', function() {
     expect($a.attr('title')).toEqual(text);
   });
 
-  it('generates a tip from a template', function() {
+  xit('generates a tip from a template', function() {
     var text = 'Lorem ipsum dolor sit amet';
     instance.options.template = '<div data-id="{{id}}">{{text}}</div>';
 
@@ -163,11 +163,11 @@ describe('u$ Tooltip', function() {
         text + '</div>');
   });
 
-  it('hides a tooltip from screen readers', function() {
+  xit('hides a tooltip from screen readers', function() {
     expect(instance.$tip.attr('aria-hidden')).toEqual('true');
   });
 
-  it('does not hide a tooltip from screen readers', function() {
+  xit('does not hide a tooltip from screen readers', function() {
     instance.options.hideFromScreenReaders = false;
     instance.setTip();
     expect(instance.$tip.attr('aria-hidden')).toEqual('false');

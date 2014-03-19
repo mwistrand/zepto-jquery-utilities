@@ -48,23 +48,12 @@ var defaults = {
   })(),
 
   tooltipProto = {
-    initialize: function($el, mover, options) {
+    initialize: function($el, options) {
+      this.options = $.extend({}, defaults, options);
       this.$el = $el;
-      this.mover = mover;
 
-      this.setOptions(options);
       this.setTip();
       this.attach();
-    },
-
-    setOptions: function(options) {
-      this.options = $.extend({}, defaults, options);
-
-      this.mover.setOptions({
-        hideClass: this.options.hideClass,
-        offset: this.options.offset,
-        showClass: this.options.showClass
-      });
     },
 
     setTip: function() {
@@ -75,7 +64,7 @@ var defaults = {
       this.$tip = u$.is$(tip) ? tip : $(tip).appendTo(document.body);
 
       this.$tip.attr('aria-hidden', doHide);
-      this.mover.hide(this.$tip.addClass(opts.tipClass));
+      this.hide(true);
     },
 
     attach: function() {
@@ -84,18 +73,6 @@ var defaults = {
       
       setEvent.call(this, showEvent, this.$el, this.options.delegate);
       setEvent.call(this, 'mouseleave', this.$el, this.options.delegate);
-    },
-
-    show: function($to, mousePos) {
-      clearTimeout(this.timer);
-      
-      if (!this.$current) {
-        this.$current = $to;
-
-        this.render($to);
-      }
-
-      this.mover.show(this.$tip, mousePos || $to);
     },
 
     render: function($to) {
@@ -113,21 +90,32 @@ var defaults = {
       $to.attr('title', '').data('tiptitle', title);
     },
 
-    hide: function() {
+    show: function($to, mousePos) {
+      clearTimeout(this.timer);
+      
+      if (!this.$current) {
+        this.$current = $to;
+
+        this.render($to);
+      }
+
+      this.$tip.removeClass(this.options.hideClass).
+          addClass(this.options.showClass);
+    },
+
+    hide: function(force) {
       this.timer = setTimeout(function() {
         this.mover.hide(this.$tip);
+        this.$tip.removeClass(this.options.hideClass).
+            addClass(this.options.showClass);
         this.$current.attr('title', this.$current.data('tiptitle')).
             removeData('tiptitle');
 
         this.$current = null;
-      }.bind(this), this.options.hideDelay);
+      }.bind(this), force ? 0 : this.options.hideDelay);
     }
   };
 
-u$.tooltip = function($el, options) {
-  var mover = Object.create(u$.position);
-
-  return u$.create(tooltipProto, null, $el, mover, options);
-};
+u$.tooltip = u$.createFactory(tooltipProto);
 
 })((window.Zepto || window.jQuery), window, document);

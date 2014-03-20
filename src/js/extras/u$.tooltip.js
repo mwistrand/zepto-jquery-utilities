@@ -5,16 +5,16 @@ global.u$ || (global.u$ = {});
 
 var defaults = {
     // delegate: '.js-showTip',
-    // hideClass: 'is-invisible',
-    // showClass: 'is-visible',
     // $tip: $('#uniqueTip') || '<div />'
     
+    hideClass: 'is-invisible',
     hideDelay: 100,
     hideFromScreenReaders: true,
     offset: {
       left: 15,
       top: 10
     },
+    showClass: 'is-visible',
     tipElement: '<div />',
     tipClass: 'tooltip',
     useMousePosition: true
@@ -63,7 +63,7 @@ var defaults = {
 
       this.$tip = u$.is$(tip) ? tip : $(tip).appendTo(document.body);
 
-      this.$tip.attr('aria-hidden', doHide);
+      this.$tip.attr('aria-hidden', doHide).addClass(this.options.tipClass);
       this.hide(true);
     },
 
@@ -91,31 +91,34 @@ var defaults = {
     },
 
     show: function($to, mousePos) {
-      clearTimeout(this.timer);
-      
       if (!this.$current) {
         this.$current = $to;
 
         this.render($to);
       }
 
-      this.$tip.removeClass(this.options.hideClass).
+      this.$tip.moveTo(mousePos, this.options.offset).
+          removeClass(this.options.hideClass).
           addClass(this.options.showClass);
     },
 
     hide: function(force) {
-      this.timer = setTimeout(function() {
-        this.mover.hide(this.$tip);
-        this.$tip.removeClass(this.options.hideClass).
-            addClass(this.options.showClass);
+      this.$tip.removeClass(this.options.showClass).
+          addClass(this.options.hideClass);
+
+      if (this.$current) {
         this.$current.attr('title', this.$current.data('tiptitle')).
             removeData('tiptitle');
 
         this.$current = null;
-      }.bind(this), force ? 0 : this.options.hideDelay);
+      }
     }
   };
 
-u$.tooltip = u$.createFactory(tooltipProto);
+u$.tooltip = function() {
+  var instance = Object.create(tooltipProto);
+  instance.initialize.apply(instance, arguments);
+  return instance;
+};
 
 })((window.Zepto || window.jQuery), window, document);

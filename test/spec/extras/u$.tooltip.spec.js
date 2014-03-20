@@ -52,17 +52,17 @@ describe('u$ Tooltip', function() {
     expect(instance.$tip.parent().get(0)).toEqual($body.get(0));
   });
 
-  xit('uses an arbitrary in-page element as the tip', function() {
+  it('uses an arbitrary in-page element as the tip', function() {
     instance.options.tipElement = $tip;
     instance.setTip();
     expect(instance.$tip).toEqual($tip);
   });
 
-  xit('adds the specified class to the tooltip', function() {
+  it('adds the specified class to the tooltip', function() {
     expect(instance.$tip).toHaveClass('tooltip');
   });
 
-  xit('hides a tooltip when the tip is created.', function() {
+  it('hides a tooltip when the tip is created.', function() {
     expect(instance.$tip).not.toHaveClass('is-visible');
   });
 

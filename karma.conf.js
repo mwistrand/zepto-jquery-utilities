@@ -13,6 +13,7 @@ module.exports = function(config) {
 
 			// dependencies
 			"lib/jquery.min.js",
+			"../plugins/moveTo/src/$.moveTo.js",
 
 			// test helper code
 			"test/helpers/jasmine-jquery.js",

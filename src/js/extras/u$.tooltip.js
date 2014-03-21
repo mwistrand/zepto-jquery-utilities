@@ -3,6 +3,12 @@
 
 global.u$ || (global.u$ = {});
 
+function setID($el) {
+  if (!$el.attr('id')) {
+    $el.attr('id', 'tooltip-' + +new Date());
+  }
+}
+
 var defaults = {
     // delegate: '.js-showTip',
     // $tip: $('#uniqueTip') || '<div />'
@@ -63,7 +69,8 @@ var defaults = {
 
       this.$tip = u$.is$(tip) ? tip : $(tip).appendTo(document.body);
 
-      this.$tip.attr('aria-hidden', doHide).addClass(this.options.tipClass);
+      setID(this.$tip);
+      this.$tip.attr('aria-hidden', doHide).addClass(opts.tipClass);
       this.hide(true);
     },
 
@@ -95,9 +102,10 @@ var defaults = {
         this.$current = $to;
 
         this.render($to);
+        $to.attr('aria-describedby', this.$tip.attr('id'));
       }
 
-      this.$tip.moveTo(mousePos, this.options.offset).
+      this.$tip.moveTo(mousePos || $to, this.options.offset).
           removeClass(this.options.hideClass).
           addClass(this.options.showClass);
     },
@@ -108,7 +116,7 @@ var defaults = {
 
       if (this.$current) {
         this.$current.attr('title', this.$current.data('tiptitle')).
-            removeData('tiptitle');
+            removeData('tiptitle').removeAttr('aria-describedby');
 
         this.$current = null;
       }

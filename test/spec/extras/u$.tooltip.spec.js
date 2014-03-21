@@ -93,6 +93,16 @@ describe('u$ Tooltip', function() {
       $a.trigger('mouseenter').trigger('mouseleave');
       expect(instance.hide).toHaveBeenCalled();
     });
+
+    it('displays the tooltip when the trigger gains keyboard focus', function() {
+      $a.trigger('focusin');
+      expect(instance.show).toHaveBeenCalled();
+    });
+
+    it('hides the tooltip when the trigger loses focus', function() {
+      $a.trigger('focus').trigger('blur');
+      expect(instance.hide).toHaveBeenCalled();
+    });
   });
 
   describe('when a tooltip is displayed', function() {

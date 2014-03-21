@@ -27,20 +27,24 @@ var defaults = {
   },
 
   setEvent = (function() {
+    function show(e) {
+      this.show($(e.currentTarget));
+    }
+    function hide() {
+      this.hide();
+    }
+
     var callbacks = {
-      mouseenter: function(e) {
-        this.show($(e.currentTarget));
-      },
+      focus: show,
+      mouseenter: show,
+      blur: hide,
+      mouseleave: hide,
 
       mousemove: function(e) {
         this.show($(e.currentTarget), {
           left: e.pageX,
           top: e.pageY
         });
-      },
-
-      mouseleave: function() {
-        this.hide();
       }
     };
 
@@ -76,10 +80,14 @@ var defaults = {
 
     attach: function() {
       var showEvent = this.options.useMousePosition ?
-          'mousemove' : 'mouseenter';
+          'mousemove' : 'mouseenter',
+        $el = this.$el,
+        delegate = this.options.delegate;
       
-      setEvent.call(this, showEvent, this.$el, this.options.delegate);
-      setEvent.call(this, 'mouseleave', this.$el, this.options.delegate);
+      setEvent.call(this, 'focus', $el, delegate);
+      setEvent.call(this, showEvent, $el, delegate);
+      setEvent.call(this, 'blur', $el, delegate);
+      setEvent.call(this, 'mouseleave', $el, delegate);
     },
 
     render: function($to) {

@@ -37,7 +37,6 @@ describe('u$ Tooltip', function() {
 
     instance = u$.tooltip($body, {
       delegate: '.js-showTip',
-      hideDelay: 0,
       useMousePosition: false
     });
     instance.$tip.css('width', '1px');
@@ -129,7 +128,6 @@ describe('u$ Tooltip', function() {
     it('uses the mouse position to determine the tooltip position', function() {
       resetAndTrigger({
         delegate: '.js-showTip',
-        hideDelay: 0
       });
       expect(instance.$tip.css('top')).toEqual('110px');
       expect(instance.$tip.css('left')).toEqual('115px');
@@ -138,14 +136,13 @@ describe('u$ Tooltip', function() {
     it('offsets the tip from the generated position', function() {
       resetAndTrigger({
         delegate: '.js-showTip',
-        hideDelay: 0,
         offset: {
-          left: 0,
-          top: 0
+          left: 10,
+          top: 10
         }
       });
-      expect(instance.$tip.css('top')).toEqual('100px');
-      expect(instance.$tip.css('left')).toEqual('100px');
+      expect(instance.$tip.css('top')).toEqual('110px');
+      expect(instance.$tip.css('left')).toEqual('110px');
     });
 
     it("sets the trigger's `aria-describedby` attribute to the" +

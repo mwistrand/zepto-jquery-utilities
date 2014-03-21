@@ -14,7 +14,6 @@ var defaults = {
     // $tip: $('#uniqueTip') || '<div />'
     
     hideClass: 'is-invisible',
-    hideDelay: 100,
     hideFromScreenReaders: true,
     offset: {
       left: 15,

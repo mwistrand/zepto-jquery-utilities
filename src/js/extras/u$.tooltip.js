@@ -27,7 +27,9 @@ var defaults = {
 
   setEvent = (function() {
     function show(e) {
-      this.show($(e.currentTarget));
+      var $trigger = $(e.currentTarget);
+
+      this.show($trigger, $trigger.position());
     }
     function hide() {
       this.hide();

@@ -19,8 +19,8 @@ describe('u$ Tooltip', function() {
     $a = $('<a class="js-showTip" />').appendTo($body);
   }
 
-  function resetAndTrigger(options) {
-    var e = $.Event('mousemove');
+  function resetAndTrigger(options, event) {
+    var e = $.Event(event || 'mousemove');
     e.pageX = 100;
     e.pageY = 100;
 
@@ -141,6 +141,19 @@ describe('u$ Tooltip', function() {
           top: 10
         }
       });
+      expect(instance.$tip.css('top')).toEqual('110px');
+      expect(instance.$tip.css('left')).toEqual('110px');
+    });
+
+    xit('ignores the offset and mouse position if the tooltip is triggered by' +
+        ' a keyboard event', function() {
+      resetAndTrigger({
+        delegate: '.js-showTip',
+        offset: {
+          left: 10,
+          top: 10
+        }
+      }, 'focus');
       expect(instance.$tip.css('top')).toEqual('110px');
       expect(instance.$tip.css('left')).toEqual('110px');
     });

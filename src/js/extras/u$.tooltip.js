@@ -29,7 +29,9 @@ var defaults = {
     function show(e) {
       var $trigger = $(e.currentTarget);
 
-      this.show($trigger, $trigger.position());
+      setTimeout(function() {
+        this.show($trigger);
+      }.bind(this), 10);
     }
     function hide() {
       this.hide();
@@ -114,8 +116,9 @@ var defaults = {
         $to.attr('aria-describedby', this.$tip.attr('id'));
       }
 
-      this.$tip.moveTo(mousePos || $to, this.options.offset).
-          removeClass(this.options.hideClass).
+      this.$tip.removeClass(this.options.hideClass).
+          moveTo(mousePos || $to, this.options.offset).
+          css('visibility', 'visible').
           addClass(this.options.showClass);
     },
 

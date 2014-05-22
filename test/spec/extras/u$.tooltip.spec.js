@@ -40,6 +40,8 @@ describe('u$ Tooltip', function() {
       useMousePosition: false
     });
     instance.$tip.css('width', '1px');
+
+    jasmine.Clock.useMock();
   });
   afterEach(function() {
     cleanUp();
@@ -85,6 +87,7 @@ describe('u$ Tooltip', function() {
 
     it('displays the tooltip when a trigger is moused over', function() {
       $a.trigger('mouseenter');
+      jasmine.Clock.tick(101);
       expect(instance.show).toHaveBeenCalled();
     });
 
@@ -95,6 +98,7 @@ describe('u$ Tooltip', function() {
 
     it('displays the tooltip when the trigger gains keyboard focus', function() {
       $a.trigger('focusin');
+      jasmine.Clock.tick(101);
       expect(instance.show).toHaveBeenCalled();
     });
 
@@ -107,6 +111,7 @@ describe('u$ Tooltip', function() {
   describe('when a tooltip is displayed', function() {
     beforeEach(function() {
       $a.trigger('mouseenter');
+      jasmine.Clock.tick(101);
     });
 
     it('adds the "tip is displayed" class to the tooltip', function() {
@@ -194,6 +199,7 @@ describe('u$ Tooltip', function() {
           data('id', '12345').
           data('text', text).
           trigger('mouseenter');
+      jasmine.Clock.tick(101);
     });
 
     it('uses the trigger\'s `title` attribute', function() {
@@ -217,6 +223,7 @@ describe('u$ Tooltip', function() {
       // `mouseenter` has already been triggered at this point.
       // Hide and re-display the mouse to force the template to take effect.
       $a.trigger('mouseleave').trigger('mouseenter');
+      jasmine.Clock.tick(101);
       expect(instance.$tip.html()).toEqual('<div data-id="12345">' +
           text + '</div>');
     });

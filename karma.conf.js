@@ -13,7 +13,6 @@ module.exports = function(config) {
 
 			// dependencies
 			"bower_components/jquery/dist/jquery.min.js",
-			"bower_components/moveto/src/$.moveTo.js",
 
 			// test helper code
 			"test/helpers/jasmine-jquery.js",

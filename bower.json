@@ -9,7 +9,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.1",
-    "moveto": "mwistrand/zepto-jquery-moveto"
+    "jquery": "~2.1.1"
   }
 }

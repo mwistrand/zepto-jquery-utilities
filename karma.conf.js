@@ -12,8 +12,8 @@ module.exports = function(config) {
 			{ pattern: "test/fixtures/*.html", watched: true, served: true, included: false },
 
 			// dependencies
-			"lib/jquery.min.js",
-			"../plugins/moveTo/src/$.moveTo.js",
+			"bower_components/jquery/dist/jquery.min.js",
+			"bower_components/moveto/src/$.moveTo.js",
 
 			// test helper code
 			"test/helpers/jasmine-jquery.js",

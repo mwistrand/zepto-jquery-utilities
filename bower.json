@@ -1,0 +1,15 @@
+{
+  "name": "u$",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mwistrand/zepto-jquery-utilities",
+  "authors": [
+    "Matt Wistrand <matt@troglodytidae.com>"
+  ],
+  "description": "A helper library for Zepto/jQuery",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "moveto": "mwistrand/zepto-jquery-moveto"
+  }
+}

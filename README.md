@@ -14,7 +14,7 @@ The ECMAScript 5 `Object.create` and `Array.prototype` methods. A lightweight fa
   * Returns a factory function that:
     1. Creates a new instance object from a prototype.
     2. Calls an optional function bound to `this` before it…
-    3. Calls an options `initialize` method.
+    3. Calls an optional `initialize` method with either the original arguments OR the return value of the optional `beforeFn` function.
 
 ```javascript
 var protoObject = {

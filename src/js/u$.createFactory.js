@@ -15,7 +15,8 @@ global.u$ || (global.u$ = {});
 
 u$.createFactory = function(proto, before) {
   return function() {
-    var instance;
+    var args,
+      instance;
 
     if ($.isFunction(proto)) {
       proto = proto.apply(null, arguments);
@@ -24,11 +25,11 @@ u$.createFactory = function(proto, before) {
     instance = Object.create(proto);
 
     if (before) {
-      before.apply(instance, arguments);
+      args = before.apply(instance, arguments);
     }
 
     if (instance.initialize) {
-      instance.initialize.apply(instance, arguments);
+      instance.initialize.apply(instance, $.isArray(args) ? args : arguments);
     }
 
     return instance;
